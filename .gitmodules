@@ -1,0 +1,6 @@
+[submodule "clayRS/clayRS"]
+	path = clayRS/clayRS
+	url = https://github.com/giuspillo/ClayRS.git
+[submodule "clay"]
+	path = clay
+	url = https://github.com/giuspillo/ClayRS.git

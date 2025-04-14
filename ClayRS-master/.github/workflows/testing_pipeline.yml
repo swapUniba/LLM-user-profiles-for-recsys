@@ -1,0 +1,43 @@
+name: Testing pipeline
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+  workflow_dispatch:
+
+jobs:
+  main:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ['3.8', '3.10']
+
+    steps:
+      -
+        name: Checkout Repository
+        uses: actions/checkout@v3
+      -
+        name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+      -
+        name: Setup installation requirements
+        run: |
+          pip install --upgrade pip wheel
+          pip install pytest-cov==3.00
+          pip install -e .
+      -
+        name: Testing Python ${{ matrix.python-version }} with coverage
+        run: |
+          pytest --color=yes --cov-report xml:codecoverage_${{ matrix.python-version }}.xml --cov=clayrs test/
+      -
+        name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v3
+        with: # no token required for public repos
+          fail_ci_if_error: true
+          files: ./codecoverage_${{ matrix.python-version }}.xml
+          flags: python_${{ matrix.python-version }}

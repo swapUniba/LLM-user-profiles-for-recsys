@@ -1,0 +1,99 @@
+metti nella cartella getall data embedding i file train e test (stanno in getall data raw movielens) e gli embedding dei film
+
+film:
+modificata istruzione 211 in feature_list = [ ['compgcn_384_n1'] ]
+da feature_list = [['compgcn_384_n1', 'all-MiniLM-L12-v2_dictionary', 'vit_cls', 'r2p1d', 'vggish']]
+
+libri: 
+modificata istruzione 115 da      test_ds = GETALLDataset(test_ratings)
+ a test_ds = GETAllDataset(test_ratings)
+
+
+FILE DA PRENDERE IN CONSIDERAZIONE
+file di previsione
+C:\UNIVERSITA\TESI\codice tesi\getall_multimodal_kars-111E\GETAll\reports_film\predictions\uni\drop0.5_uni_GETAllNetworkBasic_compgcn_384_n1_top5.tsv
+C:\UNIVERSITA\TESI\codice tesi\getall_multimodal_kars-111E\GETAll\reports_libri\predictions\uni\drop0.5_uni_GETAllNetworkBasic_compgcn_384_n1_top5.tsv
+
+test e train libri e film
+C:\UNIVERSITA\TESI\codice tesi\getall_multimodal_kars-111E\GETAll\data\embeddings\dbbook\text\test.tsv
+C:\UNIVERSITA\TESI\codice tesi\getall_multimodal_kars-111E\GETAll\data\embeddings\dbbook\text\train.tsv
+
+C:\UNIVERSITA\TESI\codice tesi\getall_multimodal_kars-111E\GETAll\data\embeddings\movielens\text\test.tsv
+C:\UNIVERSITA\TESI\codice tesi\getall_multimodal_kars-111E\GETAll\data\embeddings\movielens\text\train.tsv
+
+truth file
+C:\UNIVERSITA\TESI\codice tesi\1.codice originale profilo\file_exp\file_exp\ml1m\test_sorted.tsv
+C:\UNIVERSITA\TESI\codice tesi\1.codice originale profilo\file_exp\file_exp\dbbook\test_sorted.tsv
+
+PASSAGGI PRELIMINARI
+I file di previsione drop0.5_uni_GETAllNetworkBasic_compgcn_384_n1_top5.tsv 
+vanno messi nella relativa cartella:
+C:\UNIVERSITA\TESI\codice tesi\ClayRS-master\getall\ml1m
+C:\UNIVERSITA\TESI\codice tesi\ClayRS-master\getall\dbbook
+C:\UNIVERSITA\TESI\codice tesi\ClayRS-master\baselines\dbbook
+C:\UNIVERSITA\TESI\codice tesi\ClayRS-master\baselines\ml1m
+I file test e train libri e film vanno messi nella relativa cartella
+C:\UNIVERSITA\TESI\codice tesi\ClayRS-master\datasets\dbbook
+C:\UNIVERSITA\TESI\codice tesi\ClayRS-master\datasets\ml1m
+Vanno create le cartelle rq1 e rq2 in  C:\UNIVERSITA\TESI\codice tesi\ClayRS-master
+
+ISTRUZIONI PER LA VALUTAZIONE DELLA PREVISIONE 
+pip install -r "C:\UNIVERSITA\TESI\codice tesi\ClayRS-master\requirements.txt"
+pip install PyYAML==5.3.1
+pip install clayrs
+cd "C:\UNIVERSITA\TESI\codice tesi\ClayRS-master"
+python "eval_rq1_rq2 1.py"
+
+C:\UNIVERSITA\TESI\codice tesi\ClayRS-master>python "eval_rq1_rq2 1.py"
+C:\Users\arian\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\torchvision\models\detection\anchor_utils.py:63: UserWarning: Failed to initialize NumPy: module compiled against API version 0x10 but this version of numpy is 0xf (Triggered internally at ..\torch\csrc\utils\tensor_numpy.cpp:77.)
+  device: torch.device = torch.device("cpu"),
+Current working directory: C:\UNIVERSITA\TESI\codice tesi\ClayRS-master
+Predictions folder path: rq2_getall/dbbook
+Predictions to be evaluated: ['drop0.6_uni_GETAllNetworkBasic_compgcn_384_n1_top5.tsv']
+Importing ratings:  100%|███████████████████████████████████████████████████████████████████| 68928/68928 [00:00<00:00]
+Importing ratings:  100%|███████████████████████████████████████████████████████████████████| 60386/60386 [00:00<00:00]
+Importing ratings:  100%|███████████████████████████████████████████████████████████████████| 27118/27118 [00:00<00:00]
+INFO - Performing evaluation on metrics chosen
+Performing APLT@5:  100%|███████████████████████████████████████████████████████████████████████████| 7/7 [00:06<00:00]
+                                               model  Precision@5  Recall@5  ...    Gini@5     EPC@5    APLT@5
+0  drop0.6_uni_GETAllNetworkBasic_compgcn_384_n1_...     0.701085  0.558061  ...  0.678291  0.633575  0.211416
+
+[1 rows x 8 columns]
+Current working directory: C:\UNIVERSITA\TESI\codice tesi\ClayRS-master
+Predictions folder path: rq2_getall/dbbook
+Predictions to be evaluated: ['drop0.6_uni_GETAllNetworkBasic_compgcn_384_n1_top5.tsv']
+Importing ratings:  100%|███████████████████████████████████████████████████████████████████| 68928/68928 [00:00<00:00]
+Importing ratings:  100%|███████████████████████████████████████████████████████████████████| 60386/60386 [00:00<00:00]
+Importing ratings:  100%|███████████████████████████████████████████████████████████████████| 27118/27118 [00:00<00:00]
+INFO - Performing evaluation on metrics chosen
+Performing APLT@5:  100%|███████████████████████████████████████████████████████████████████████████| 7/7 [00:06<00:00]
+                                               model  Precision@5  Recall@5  ...    Gini@5     EPC@5    APLT@5
+0  drop0.6_uni_GETAllNetworkBasic_compgcn_384_n1_...     0.701085  0.558061  ...  0.678291  0.633575  0.211416
+
+[1 rows x 8 columns]
+Current working directory: C:\UNIVERSITA\TESI\codice tesi\ClayRS-master
+Predictions folder path: rq2_getall/ml1m
+Predictions to be evaluated: ['drop0.5_uni_GETAllNetworkBasic_compgcn_384_n1_top5.tsv']
+Importing ratings:  100%|█████████████████████████████████████████████████████████████████| 756964/756964 [00:03<00:00]
+Importing ratings:  100%|█████████████████████████████████████████████████████████████████| 189154/189154 [00:00<00:00]
+Importing ratings:  100%|███████████████████████████████████████████████████████████████████| 29810/29810 [00:00<00:00]
+INFO - Performing evaluation on metrics chosen
+Performing APLT@5:  100%|███████████████████████████████████████████████████████████████████████████| 7/7 [00:24<00:00]
+                                               model  Precision@5  Recall@5  ...    Gini@5     EPC@5    APLT@5
+0  drop0.5_uni_GETAllNetworkBasic_compgcn_384_n1_...     0.789192  0.451949  ...  0.793399  0.641828  0.065918
+
+[1 rows x 8 columns]
+Current working directory: C:\UNIVERSITA\TESI\codice tesi\ClayRS-master
+Predictions folder path: rq2_getall/ml1m
+Predictions to be evaluated: ['drop0.5_uni_GETAllNetworkBasic_compgcn_384_n1_top5.tsv']
+Importing ratings:  100%|█████████████████████████████████████████████████████████████████| 756964/756964 [00:03<00:00]
+Importing ratings:  100%|█████████████████████████████████████████████████████████████████| 189154/189154 [00:00<00:00]
+Importing ratings:  100%|███████████████████████████████████████████████████████████████████| 29810/29810 [00:00<00:00]
+INFO - Performing evaluation on metrics chosen
+Performing APLT@5:  100%|███████████████████████████████████████████████████████████████████████████| 7/7 [00:24<00:00]
+                                               model  Precision@5  Recall@5  ...    Gini@5     EPC@5    APLT@5
+0  drop0.5_uni_GETAllNetworkBasic_compgcn_384_n1_...     0.789192  0.451949  ...  0.793399  0.641828  0.065918
+
+[1 rows x 8 columns]
+
+viene popolata la cartella rq2

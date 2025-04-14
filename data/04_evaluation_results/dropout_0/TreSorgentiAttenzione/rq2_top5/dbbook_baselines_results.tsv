@@ -1,0 +1,2 @@
+model	Precision@5	Recall@5	F1@5	NDCG@5	Gini@5	EPC@5	APLT@5
+drop0_tri_GETAllNetworkTriSelfSourcesCross_user-centroid_item_emb_user-profile_item_emb_compgcn_384_n1_top5.tsv	0.685687074829932	0.5430113314617958	0.5584515903006739	0.8788452235493331	0.6275323924851497	0.6165772842594597	0.2487210085062114
